@@ -5,6 +5,7 @@
 # Time: 1.52s
 # Memory: 11M
 # Language: Python 3.2.3
+# Date: 17/01/2014
 # 
 # Problem: 
 # The Antique Comedians of Malidinesia prefer comedies to tragedies. 

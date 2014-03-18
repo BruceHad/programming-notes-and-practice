@@ -5,6 +5,7 @@
 # Time: N/A
 # Memory: N/A
 # Language: Python 3.2.3
+# Date: 20/01/2014
 # 
 # Problem: 
 #  The most important part of a GSM network is so called Base Transceiver 

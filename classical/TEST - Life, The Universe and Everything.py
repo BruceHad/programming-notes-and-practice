@@ -5,7 +5,7 @@
 # Time: 0.03
 # Memory: 3.7M 	
 # Language: PYTH 2.7
-# 
+# Date: 
 # Problem: Your program is to use the brute-force approach in order to 
 # find the Answer to Life, the Universe, and Everything. More 
 # precisely...rewrite small numbers from input to output. Stop 
