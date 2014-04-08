@@ -7,7 +7,6 @@ Solved:
 1. FCTRL2 - Small factorials (PYTHON 20/01/2014)
 1. PRIME1 - Prime Generator (PYTHON 13/03/2012)
 1. ONP - Transform the Expression (PYTHON 16/01/2014)
-1. LASTDIG - The Last Digit (PYTHON 24/03/2014)
 1. ACPC10A
 1. CANDY
 1. FASHION
@@ -16,11 +15,11 @@ Solved:
 1. PALIN
 1. TEST
 1. TOANDFRO
+1. LASTDIG - The Last Digit (PYTHON 24/03/2014)
 1. AE00 - Rectangles (PYTHON 01/4/2014)
+1. CANDY3 - Candy III (PYTHON 03/04/2014)
 
-## Not Solved
+Not Solved:
 
 1. FCTRL - Factorial (PYTHON 20/01/2014 Exceeded Time Limit)
-
-# Notes
 
