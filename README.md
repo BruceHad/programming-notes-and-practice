@@ -1,10 +1,12 @@
-spoj
-====
+# Programming Notes and Practice
 
-Sphere Online Judge (programming challenges)
+## Javascript
 
-Repository of solutions and work for the [SPOJ][1].
+* Eloquent Javascript
 
-Languages: Python
+## Python
+
+
+* [Sphere Online Judge][1] (programming challenges)
 
 [1]: http://www.spoj.com/users/treerock/
