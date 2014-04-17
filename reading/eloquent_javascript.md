@@ -91,6 +91,78 @@ Confusingly NaN == NaN evaluates to false. User inNaN() to check instead.
 
 **Comments**: are simple enough. // for single line. and /*...*/ for block statements.
 
+# Functions
+
+Functions can be thought of as (usually) named containers for chunks of code. Usually used for common code that needs to be used repeatedly, or by different sections of the code. But that is a simplification, they can be used as:
+
+* Pure Functions
+* Algorithms
+* Indirections
+* Abstractions
+* Decisions
+* Modules
+* Continuations
+* Data Structures
+
+[Don't know what most of these are]
+
+A pure function is something like a mathematical function such as COSINE or Square Root. It always returns the same value for any arguments, and has no side effects. Pure functions are good, because they are easy to test independant from the rest of the code. But sometime you want the side effects.
+
+A function is created using the function keyword, followed by the variable name used to call the function (optional), parenthesis containing any arguments (again optional), followed by curly brackets containing the code.
+
+	function myFunction(arg1, arg2){... function code ...}
+
+The return keyword ends the processing of the function and returns the result of the function. Return can be blank, in which case it returns undefined.
+	
+	var add = function(a, b){...};
+	
+This is a different way to create a function. It's basically an anonymous function that is assigned to a variable name.
+
+Order of Execution: JS doesn't work sequentially through a program. It first looks at the whole program and stores functions prior to the rest of the program, so that those functions can be called even if they are defined further down the code. IIRC the variable names for the anonymous functions (see above) are not stored in this way, so have to be declared prior to being called.
+
+If a function contains other functions, these are assessed whenever the function is called, prior to the rest of the function executing.
+
+Variables created inside a function only exist within the scope of the function (only when created with the var keyword iirc) and are destroyed when the function completes. That means you can use variables in different functions without worrying about whether the same name has been used in a different part of the code.
+
+When looking for a variable, JS checks if it exists in the local scope first. If it is not found, then it checks a higher level, all the way up to the root.
+
+There is something confusing called closures.
+
+	var variable = "top-level";
+	function parentFunction() {
+	  var variable = "local";
+	  function childFunction() {
+		print(variable);
+	  }
+	  return childFunction;
+	}
+
+	var child = parentFunction();
+	child();
+
+Even though child() is called in the top-level, the "local" variable will be printed. "Closure is a function that can have free variables together with an environment that binds these variables". Seems to allow you to create a function with it's own scope and pass that around and use it in other parts of the code, but always using the local variables.
+
+This lexical scoping also makes it possible to synthesize functions from other functions. Best done by example.
+
+	function makeAddFunction (amount) {
+		return function(number){
+			return number + amount
+		};
+	}
+	var addTwo = makeAddFunction(2);
+	addTwo(4);
+	>> 6
+	
+So we've synthesised addTwo from makeAddFunction by passing the argument 2 to the function. Note the anonymous function that is returned.
+
+Lexical scoping also allow recursion to work in JS. Note: Recursion can be a lot slower in JS and can lead to stack limit errors as the compiler doesn't optimise.
+
+The Stack is closely related to recursion. When a function is called, the current program pauses until the function is complete, so it is placed on top of the stack until the function completes, and then gets taken back off the stack when it resumes. 
+
+With a recursive call, the same function is called repeatedly, each one being placed on the stack at the point the next function is called. It then peels back down the stack after the base condition has been met and each function completes.
+
+This stack requires space in memory, which is limited. If you exceed that an internal error is thrown.
+
 # Conventions
 
 Function names are usually camelcase fuzzyLittleFunction(), but some have an initial capital e.g. Number() but these are infact Constructors which are slightly different.
