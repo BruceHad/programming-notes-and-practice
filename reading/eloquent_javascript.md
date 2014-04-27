@@ -57,6 +57,12 @@ Logical operators && and || can also be applied to non-booleans. In the case of 
 
 These can be useful shortcuts, but look confusing so good to learn about them.
 
+? (ampersand) is a useful, ternary operator that works like and if/else statement.
+
+	 return total + (element === 0 ? 1 : 0);
+	 
+The statement before the ? is the condition. If that evaluates to True, then the first element (1) is returned, else the second element (0) is returned.
+
 **Statements**: A statement is a basic unit of programming. JS programs are mainly lists of statements, usually ending in a semi-colon.
 **Variables**: Variables hold values. var name = "Bruce";  'var' is used to create a new variable, and is followed by the variable name. 
 
@@ -162,6 +168,144 @@ The Stack is closely related to recursion. When a function is called, the curren
 With a recursive call, the same function is called repeatedly, each one being placed on the stack at the point the next function is called. It then peels back down the stack after the base condition has been met and each function completes.
 
 This stack requires space in memory, which is limited. If you exceed that an internal error is thrown.
+
+# Objects and Arrays
+
+An object is just a collection of things, but it can be used for a variety of purposes.
+
+A new object can be created using the contructor or with the bracket notation:
+
+	var myCar = new Object();
+	var myCat = {};
+
+Values can be added to an object using dot or bracket notation.
+
+	myCar.make = "Ford";
+	myCat["name"] = "Reggie";
+	
+The later is necessary for values that don't have standard variable names.
+
+Or you can contruct an object with the curly brackets.
+
+	var myCat = {
+		"Name": "Reggie,
+		"Age": 6};
+		
+Terminology here is property: value.
+
+Values can be deleted:
+
+	delete myCat.Name;
+
+The in operator tells you if the object has a certain property.
+
+	"Name" in chineseBox;
+	
+Array is a high level object for storing lists. Similar to other objects, except it uses square bracket instead of curly ones.
+
+	var myCar = new Array();
+	var myCat = [];
+	
+An array stores a list of properties, not the property/value pairs like an object. It has addition properties like array.length plus some other methods like .pop() and .push(). Check docs for more.
+
+# Error Handling
+
+Two types of bugs, error with the internal program/design and errors with external parameters such as user inputs. This bits that we control should be fixed to ensure there are few errors, leaving the bits that are outwith our control. These require Error Handling.
+
+A bug often causes the application to 'throw' an error, but we can also program it to throw errors under specified circumstances.
+
+Throwing an error is a bit like a supercharged return function, where instead of exiting just the current function, the error exits all processing, unwinding the stack and throwing away all those contexts. 
+
+	throw "Can not take the last element of an empty array.";
+	throw new Error("Fire!");
+
+Unless, that is, we 'catch' the error. Which we can do by wraping the code in try/catch block.
+
+	try {
+	    code that might throw an error
+	}
+	catch (error) {
+	    print("Something went wrong: ", error.message);
+	}
+
+There is also a finally block that can be used to clean up after the error. e.g. If the error is thrown in mid process, leaving the environment in a state, the finally block can be used to clean up those variables.
+
+# Functional Programming
+
+In JS, functions can be built from other functions. This can be used to manage complexity through abstracting away from complex algorithms. The theory is a programmer with knowledge of some higher level functions can be a lot more efficient (and create terser code) than one who writes, and re-writes the code, from lower level instructions, each time it's required. With good abstractions, programmer can write we want the code to do, while ignoring a lot of the details about how it is done.
+
+JS doesn't have many fundamental functions, leading to programmers to write their own (or use public) libraries of functions. Hence the popularity of JQuery and such like.
+
+Some examples:
+
+	function forEach(array, action) {
+	  for (var i = 0; i < array.length; i++)
+		action(array[i]);
+	}
+
+	forEach(["Wampeter", "Foma", "Granfalloon"], print);
+	
+This one take a for loop and makes it easier to use. It basically says "for each element in [array], carry out the function(element)". We can pass any function to forEach(), such as print, alert or some custom function. e.g.
+
+	forEach(numbers, function (number) {
+		total += number;
+	});
+	
+Another useful type of higher-order function, modifies the function values they are given.
+
+	function negate(func) {
+		return function(x){
+			return ! func(x)
+		};
+	}
+	
+	var isNotNaN = negate(isNaN);
+	
+Here we create a function (negate) that returns a new function (which we've called isNotNan), that negates the results of a different function (isNan). A weakness of these functions is that they expect a set number of arguments, so we can't negate a function that requires more than one argument, for example.
+
+We can use the .apply, which is a method of functions, to get access to all arguments, regardless of the number.
+
+	function negate(func) {
+	  return function() {
+		return !func.apply(null, arguments);
+	  };
+	}
+	
+'Reduce' (or 'fold') is a useful function that takes an array and returns a single value, by using a function to combine each value in the array with a base.
+
+	function reduce(combine, base, array) {
+	  forEach(array, function (element) {
+		base = combine(base, element);
+	  });
+	  return base;
+	}
+
+Sum uses reduce to produce the sum of all values in the array.
+	
+	function add(a, b){
+		return a + b
+	}
+
+	function sum(numbers) {
+	  return reduce(add, 0, numbers);
+	}
+	
+'Map' is another fundamental function that takes an array and applies a function to each element or the array, returning a mapped array.
+
+	function map(func, array) {
+		var result = [];
+		forEach(array, function(element){
+			result.push(func(element));
+		});
+		return result;
+	}
+	
+	show(map(Math.round, [0.01, 2.1, 9.89]));
+	>> [0, 2, 10]
+	
+
+	
+
 
 # Conventions
 

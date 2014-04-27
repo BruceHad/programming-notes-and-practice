@@ -1,8 +1,8 @@
-# What:
+# What
 
 Become a web developer.
 
-# Attitude:
+# Attitude
 
 * The world is full of fascinating problems.
 * No problem should ever (have to) be solved twice.
@@ -10,7 +10,7 @@ Become a web developer.
 * Freedom is good.
 * Attitude is no substitute for competence.
 
-# How:
+# How
 
 By:
 
