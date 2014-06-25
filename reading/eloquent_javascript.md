@@ -11,14 +11,15 @@ Six basic types: number, string, boolean, objects, function and undefined.
 
 The typeof command will return the type of any variable.
 
-    typeof 4.5
-    >> Number
-    typeof(null)
-    >> Object
-    typeof NaN
-    >> Number
-	
+	typeof 4.5
+	% Number
+	typeof(null)
+	% Object
+	typeof NaN
+	Number
+
 Numbers have 64 bits. One bit is taken up by the sign (negative or positive) and 11 bits store the position of the fractional dot leaving 52 bits for the actual numbers. So you can store anything up to <code>2**52</code>.
+
 Numbers can just be typed:
 
     var x = 8;
@@ -59,8 +60,8 @@ These can be useful shortcuts, but look confusing so good to learn about them.
 
 ? (ampersand) is a useful, ternary operator that works like and if/else statement.
 
-	 return total + (element === 0 ? 1 : 0);
-	 
+	return total + (element === 0 ? 1 : 0);
+
 The statement before the ? is the condition. If that evaluates to True, then the first element (1) is returned, else the second element (0) is returned.
 
 **Statements**: A statement is a basic unit of programming. JS programs are mainly lists of statements, usually ending in a semi-colon.
@@ -121,7 +122,7 @@ A function is created using the function keyword, followed by the variable name 
 The return keyword ends the processing of the function and returns the result of the function. Return can be blank, in which case it returns undefined.
 	
 	var add = function(a, b){...};
-	
+
 This is a different way to create a function. It's basically an anonymous function that is assigned to a variable name.
 
 Order of Execution: JS doesn't work sequentially through a program. It first looks at the whole program and stores functions prior to the rest of the program, so that those functions can be called even if they are defined further down the code. IIRC the variable names for the anonymous functions (see above) are not stored in this way, so have to be declared prior to being called.
@@ -190,7 +191,7 @@ Or you can contruct an object with the curly brackets.
 	var myCat = {
 		"Name": "Reggie,
 		"Age": 6};
-		
+        
 Terminology here is property: value.
 
 Values can be deleted:
@@ -200,12 +201,12 @@ Values can be deleted:
 The in operator tells you if the object has a certain property.
 
 	"Name" in chineseBox;
-	
+
 Array is a high level object for storing lists. Similar to other objects, except it uses square bracket instead of curly ones.
 
 	var myCar = new Array();
 	var myCat = [];
-	
+
 An array stores a list of properties, not the property/value pairs like an object. It has addition properties like array.length plus some other methods like .pop() and .push(). Check docs for more.
 
 # Error Handling
@@ -244,13 +245,13 @@ Some examples:
 	}
 
 	forEach(["Wampeter", "Foma", "Granfalloon"], print);
-	
+
 This one take a for loop and makes it easier to use. It basically says "for each element in [array], carry out the function(element)". We can pass any function to forEach(), such as print, alert or some custom function. e.g.
 
 	forEach(numbers, function (number) {
 		total += number;
 	});
-	
+
 Another useful type of higher-order function, modifies the function values they are given.
 
 	function negate(func) {
@@ -258,9 +259,8 @@ Another useful type of higher-order function, modifies the function values they 
 			return ! func(x)
 		};
 	}
-	
 	var isNotNaN = negate(isNaN);
-	
+
 Here we create a function (negate) that returns a new function (which we've called isNotNan), that negates the results of a different function (isNan). A weakness of these functions is that they expect a set number of arguments, so we can't negate a function that requires more than one argument, for example.
 
 We can use the .apply, which is a method of functions, to get access to all arguments, regardless of the number.
@@ -270,7 +270,7 @@ We can use the .apply, which is a method of functions, to get access to all argu
 		return !func.apply(null, arguments);
 	  };
 	}
-	
+
 'Reduce' (or 'fold') is a useful function that takes an array and returns a single value, by using a function to combine each value in the array with a base.
 
 	function reduce(combine, base, array) {
@@ -289,7 +289,7 @@ Sum uses reduce to produce the sum of all values in the array.
 	function sum(numbers) {
 	  return reduce(add, 0, numbers);
 	}
-	
+
 'Map' is another fundamental function that takes an array and applies a function to each element or the array, returning a mapped array.
 
 	function map(func, array) {
@@ -299,14 +299,26 @@ Sum uses reduce to produce the sum of all values in the array.
 		});
 		return result;
 	}
-	
 	show(map(Math.round, [0.01, 2.1, 9.89]));
 	>> [0, 2, 10]
-	
 
-	
+This is a good example of how mapping can be used. It takes a text file, splits it into an array of 'paragraphs', and then processes each paragraph, all with a single command.
 
+    function processParagraph(paragraph) {
+      var header = 0;
+      while (paragraph.charAt(0) == "%") {
+        paragraph = paragraph.slice(1);
+        header++;
+      }
 
+      return {type: (header == 0 ? "p" : "h" + header),
+              content: paragraph};
+    }
+
+    var paragraphs = map(processParagraph,
+                         recluseFile().split("\n\n"));
+
+M
 # Conventions
 
 Function names are usually camelcase fuzzyLittleFunction(), but some have an initial capital e.g. Number() but these are infact Constructors which are slightly different.

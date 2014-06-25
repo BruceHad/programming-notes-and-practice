@@ -18,6 +18,8 @@ Solved:
 1. LASTDIG - The Last Digit (PYTHON 24/03/2014)
 1. AE00 - Rectangles (PYTHON 01/4/2014)
 1. CANDY3 - Candy III (PYTHON 03/04/2014)
+1. COINS - Bytelandian gold coins (PYTHON 24/06/2014)
+1. ARITH - Simple Arithmetics (PYTHON 25/06/2014)
 
 Not Solved:
 
