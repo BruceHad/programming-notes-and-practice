@@ -62,6 +62,8 @@ So 9 is the parent of 2 and 4 , 4 is the parent of 3 and 6 is the parent of 5.
 
 So need to be able to find root.
 
+https://github.com/treerock/programming-notes-and-practice/blob/master/algs/quick_union.py
+
 Cost Model
 
 algo        | init | union | find
@@ -73,6 +75,39 @@ Compare:
 Quick-Find: Union to expensive, trees are flat but too expensive to keep flat.
 
 Quick-Union: Trees get tall, find is too expensive (could be N array accesses).
+
+# Lecture 3: Improve Quick Union
+
+Weighted quick-union. Modify quick-union to avoid tall trees. Keep track of size of each tree, balance by linking root of small tree to root of larger tree.
+
+So when you've one large and one small tree, the algorithm chooses to union the smaller tree to the larger tree, thereby minimising the number of updates.
+
+The weighted quick-union algorithm has a couple of modifications from the quick-union:
+
+1. An array tracks the size of the trees with root = i
+2. It uses the size array to determine which tree is bigger, then union the smaller tree to the bigger tree.
+3. After the union is complete, the size array is update with the new size.
+
+Analysis:
+
+* connected() - take time proportional to the depth of p and q.
+* union() - takes constant time, given roots.
+
+Propose that "depth of any node x is at most lg N."
+
+Think this through, the depth of x increases by 1 when tree T1 containing x is merged into another tree T2.
+
+Size of tree containing x can double at most lg N times.
+
+
+algo        | init | union | find
+----------------------------------
+Quick Find  |  N   |   N   |
+----------------------------------
+Quick Union |  N   |   N   |  N
+----------------------------------
+Weighted QU |  N   |  lg N | lg N
+
 
 
 
