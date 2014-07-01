@@ -108,6 +108,27 @@ Quick Union |  N   |   N   |  N
 ----------------------------------
 Weighted QU |  N   |  lg N | lg N
 
+## Quick Union with Compression
 
+Just after computing the root of p, set the id of each examined node to point to that root.
 
+This has the effect of flattening out the tree every time a root is calculated.
 
+There are two variants:
+
+1. Two-pass implementation: add a second look to root() to set the id[] of each examined node to the root.
+2. One-pass variant: Make every other node in path point to it's grandparent (thereby halving path length).
+
+## Summary
+
+Weighted quick union (with path compression) makes it possible to solve problems that otherwise would not be address.
+
+It takes operations from quadratic to near linear time.
+
+algorithm               |    worst-case time
+-----------------------------------
+quick find              |      M * N
+quick union             |      M * N
+weighted QU             |      N + M log N
+QU + path comp          |      N + M log N
+weighted QU + path comp |      N + M lg N
