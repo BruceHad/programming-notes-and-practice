@@ -23,12 +23,14 @@ class QuickUnion:
             self.sz[rootp] += self.sz[rootq]
 
 if __name__ == "__main__":
-    x = QuickUnion(5)
-    print(x.id)
-    print(x.connected(0, 4))
-    x.union(0,4)
-    print(x.connected(0, 4))
-    x.union(1,2)
-    x.union(2,4)
-    print(x.connected(0,1))
+    x = QuickUnion(10)
+    x.union(8,5)
+    x.union(4,0)
+    x.union(1,7)
+    x.union(6,1)
+    x.union(6,3)
+    x.union(3,9)
+    x.union(6,2)
+    x.union(0,8)
+    x.union(6,8)
     print(x.id)

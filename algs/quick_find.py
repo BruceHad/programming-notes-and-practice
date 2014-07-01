@@ -7,7 +7,6 @@ class QuickFind:
     def connected(self, p, q):
         return self.id[p] == self.id[q]
     def union(self, p, q):
-        print self.id
         pid = self.id[p]
         qid = self.id[q]
         for i in range(len(self.id)):
@@ -15,9 +14,11 @@ class QuickFind:
 
 
 if __name__ == "__main__":
-    x = QuickFind(3)
+    x = QuickFind(10)
+    x.union(3,5)
+    x.union(1,8)
+    x.union(1,9)
+    x.union(1,5)
+    x.union(9,0)
+    x.union(7,2)
     print(x.id)
-    print(x.connected(0,2))
-    x.union(0, 2)
-    print(x.id)
-    print(x.connected(0,2))
