@@ -132,3 +132,91 @@ quick union             |      M * N
 weighted QU             |      N + M log N
 QU + path comp          |      N + M log N
 weighted QU + path comp |      N + M lg N
+
+# Analysis of Algorithms
+
+User scientific method to analyse algorithms.
+
+* Observe
+* Hypothesise
+* Predict
+* Verify
+* Validate
+
+## Observe
+
+Take the ThreeSum algo. Given N distinct integers, how many triples sum to zero.
+
+A very simplistic, brute force algorithm to solve this in python looks a bit like this.
+
+    for i in range(length):
+            for j in range(length):
+                for k in range(length):
+                    if(numbers[i] + numbers[j] + numbers[k] == 0):
+                        count+=1
+
+We want to time how long this takes to run for a variety of inputs.
+
+In python we can use the time module to calculate how long it take.
+
+    import time
+    start_time = time.time()
+    # Do Something
+    end_time = time.time()
+    print(end_time - start_time)
+
+Combining these we can get some numbers.
+
+    import time, random
+    def ThreeSum(numbers):
+        length = len(a)
+        count = 0
+        for i in range(length):
+            for j in range(length):
+                for k in range(length):
+                    if(numbers[i] + numbers[j] + numbers[k] == 0):
+                        count+=1
+        return count
+
+    def generateInts(n):
+        ints = []
+        for i in range(n):
+            ints.append(random.randint(-999, 999))
+        return ints
+
+    if __name__ == "__main__":
+        for i in range(10, 250, 10):
+            a = generateInts(i)
+            start_time = time.time()
+            count = ThreeSum(a)
+            end_time = time.time()
+            print(i, count, end_time - start_time)
+
+The output of this looks something like:
+
+(10, 0, 0.00018286705017089844)
+(20, 6, 0.0008490085601806641)
+(30, 6, 0.0033309459686279297)
+(40, 12, 0.009526968002319336)
+(50, 42, 0.018131017684936523)
+(60, 33, 0.019998788833618164)
+(70, 90, 0.045126914978027344)
+(80, 153, 0.07164907455444336)
+(90, 228, 0.07464003562927246)
+(100, 313, 0.08504295349121094)
+(110, 508, 0.1125638484954834)
+(120, 519, 0.14544391632080078)
+(130, 762, 0.18435096740722656)
+(140, 1005, 0.3328108787536621)
+(150, 1179, 0.5061309337615967)
+(160, 1350, 0.4652128219604492)
+(170, 1932, 0.41133689880371094)
+(180, 2355, 0.9260790348052979)
+(190, 2401, 0.7268738746643066)
+(200, 2883, 0.9115848541259766)
+(210, 3681, 1.3851799964904785)
+(220, 4368, 1.5902721881866455)
+(230, 4803, 1.4227659702301025)
+(240, 4810, 1.2019579410552979)
+
+If you plot that, it comes out looking rather quadratic.
