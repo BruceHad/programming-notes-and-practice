@@ -147,9 +147,23 @@ in can be used to iterate over objects.
 	  console.log("o." + prop + " = " + obj[prop]);
 	}
 
-On mutability: numbers, strings and Booleans are all immutable (you can't change them, though you can replace them and derive new values from them, which is similar). e.g 'cat' can't have the first letter changed to 'r', without creating a new string.
+## On Mutability
 
-Objects are mutable. The properties they grasp can change. 
+Numbers, strings and Booleans are all immutable (you can't change them, though you can replace them and derive new values from them, which is similar). e.g 'cat' can't have the first letter changed to 'r', without creating a new string.
+
+Objects are mutable. The properties they grasp can change and you can add new methods or properties to an object.
+
+Immutable types like String can't be modified, so you can't add properties or methods to a String. I guess that's where prototypes come in.
+
+## Arguments Object
+
+In JS you are allowed to pass more or fewer arguments to a function than the number of parameters declared in the function sig. When the function is called a special variable named arguments is added to the scope of the function, that holds all the arguments passed to the function. 
+
+The arguments object has a length property. Each argument can be accessed similar to accessing contents of an array: arguments[0] gives the first argument, but it doesn't have other array methods.
+
+
+
+
 
 
 	
