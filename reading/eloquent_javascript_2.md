@@ -161,15 +161,16 @@ In JS you are allowed to pass more or fewer arguments to a function than the num
 
 The arguments object has a length property. Each argument can be accessed similar to accessing contents of an array: arguments[0] gives the first argument, but it doesn't have other array methods.
 
+## The Global Objects
 
+The global scope can also be approached as an object in JS. In browsers the global scope is stored in the window variable.
 
+## Summary of Objects and Arrays
+Objects provide ways to group values into a single grab bag of values. Most values in js have properites (the exception being null and undefined). Those values are accessed using dot notation or sometimes bracket (like arrays).
 
+Methods are basically properties that happen to be functions. Methods of values usually operate on that value. e.g. string.toUpperCase().
 
+Objects can also serve as maps (associative arrays). The in operator can be used to find out whether an object contains a property.
 
-	
-
-
-
-
-
+for (var name in object) loops over properties of an object.
 
