@@ -1,0 +1,32 @@
+# Setup
+
+1. Create a temporary image folder in the root folder.
+    
+    /html/temp_images/
+
+2. Change permissions on temp_images so app. can write to it.
+
+3. Update config file so that it points to the temp_images folder.
+
+4. Update config file so that base_src points to temp_images.
+
+# Move Script
+
+1. User uploads file.
+
+2. Script 
+ 2.1 Checks file contents 
+ 2.2 If above maximum, resizes image downwards.
+ 2.3 Move image to temp_images.
+
+# Cleanup Script
+
+1. Checks temp_images for files over 24 hours old.
+2. Clears out image files.
+
+# Cron Job
+
+
+
+
+

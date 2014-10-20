@@ -1,0 +1,21 @@
+## Class Inheritance
+
+https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Inheritance_and_the_prototype_chain
+
+Javascript doesn't have traditional class model for OO. It does support extending and inheritance via the prototype chain.
+
+Only functional objects, those Contructor objects that take the form given below, have a predefined prototype object that you can access. If you create a new object from a constructor, it has a hidden [[prototype]] object that can't be accessed directly.
+
+    function FuncObject(){
+    ...
+    }
+    myObject = new FuncObject();
+    // FuncObject.prototype
+    // myObject.[[prototype]]
+
+You can access the prototype using the dot notation.
+
+    FuncObject.prototype.name = "Functional Object Name";
+
+
+

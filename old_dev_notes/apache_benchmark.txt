@@ -1,0 +1,19 @@
+A simple request:
+
+	ab -n 100 -c 10 http://www.yahoo.com/
+	
+Multiple requests can be stuck in a shell script:
+
+	#!/bin/bash
+	ab -n 100 -c 10 http://www.yahoo.com/ &
+	ab -n 100 -c 10 http://www.google.com/
+	
+AB is typically used for load testing and benchmarking a website. This requires hitting it will multiple concurrent requests, often from multiple machines, to find out when the requests will top out.
+
+You don't want to bring down the live server (which may be configured to prevent multiple requests rendering your test useless) so this should be done on a development server.
+
+The load testing should be run from a different machine, rather than the server you're testing.
+
+-----------------
+http://www.petefreitag.com/item/689.cfm
+http://tales.itnobody.com/2011/12/ab-apache-bench-understanding-and-getting-tangible-results.html

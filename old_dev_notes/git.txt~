@@ -1,0 +1,120 @@
+#Git
+
+(Programming Like a Pro - git, github, version control, notes)
+
+
+Basically, anyone can hack code together. Programming though is a number of related disciplines, of which actual coding is only one small part. So if I'm going to be a programmer, I need to start learning some of those skills.
+
+One part that I know absolutely nothing about is [Version Control](http://en.wikipedia.org/wiki/Revision_control).
+
+So I've set up git and connected to github, created my own repository and&hellip;now what?
+
+I need a crash course in version control, so&hellip;
+
+## Initial Set Up Git and Github
+
+Install git locally and set up username and email address.
+
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@youremail.com"
+
+Your email address for Git should be the same one associated with your GitHub account.
+
+If you are starting a new project, probably easiest to go directly to Github and set up a new repository there. Then you can simply clone the repository locally (see below).
+
+## The Repository
+
+The simplest system just consists of a single repository. Users can 'check out a working copy' of any files that need to be updated. They can then 'commit the changes' back to the repository.
+
+A more complex system may consist of multiple users, each with a local repository (a copy of the central, shared repository). The user works on the local repository (checking out and committing changes). Once the user has finished their work on the local repository, the changes can be 'pushed' to the central repository.
+
+## Branches
+
+Branches are seperate working directories that allow new features to be worked on without affecting the master branch.
+
+Branches can be worked on an tested independantly. Once the work is complete it can be merged with the master branch. It should also be easy to update the branch from the master, to ensure that the latest code is being used.
+
+## Kicking Off A Project
+
+Create a repo on github.
+
+Follow the direction on Github:
+	1. Create directory.
+	2. Move to directory.
+	3. 'git init' - This creates a new folder in the directory called .git.
+	4. Create your new files in that folder. For example, README.
+	5. 'git add .' to stage your new files.
+	6. Commit all your changes (git commit -m 'Commit comment')
+	7. Push your changes to the repo.
+	
+## Git Workflow
+
+This is the suggested workflow when using Git.
+
+Since I am using Github (almost like a backup) I will have two (or more) clones of the system, one on Github and one local.
+
+1. Clone Master Locally
+
+To clone the remote repository to get a working repository on my local machine:
+
+    git clone git://github.com/<project>
+
+This command clones the requested project locally. It keeps the address of the original project and aliases it as 'origin' to make it easy to push changes back up to the original.
+
+This can be considered the Master branch. Each project has a master branch. This is the branch that is/can be deployed to live so should be a fully working and tested version of the system. It's always safe to create a new branch from Master.
+
+2. Create Working Branch
+
+When working on a feature, create a branch off Master. 
+
+    git branch mybranchname
+    git checkout mybranchname
+
+We can then make changes to the project. Then we need to 'stage' those changes. We do this by adding the files to the project.
+
+    git add -A .
+
+This command adds a changed file to the project. If you make further changes before committing, you need to add the file again. You could also all all files from the current working directory:
+
+A couple of handy commands: <code>git status</code> shows the current status of the repository and <code>git dif --cached</code> shows a differential view of the staged changes.
+
+Fourth, we have to commit those changes to the local branch. 
+
+	git commit -m 'Commit comment'
+
+Finally, the changes can be pushed back to shared repository.
+
+	git push <repository> <branch>
+
+e.g.
+
+    git push origin master
+
+
+### 3. Merge Into Master
+
+Once feature is complete and fully tested, merge back into master.
+
+    git checkout master
+    git merge mybranchname
+
+Then you can delete the completed branch.
+
+    git branch -d mybranchname
+
+### 4. Immediately Deploy
+
+Since the Master branch is the live version, it can be deployed to live immediately.
+
+## Ignore
+
+A global .gitignore file can also be used by adding one to your global git config. For example, you might create the file ~/.gitignore_global and add some rules to it. To add this to your config, run 
+
+    git config --global core.excludesfile ~/.gitignore_global
+	
+My file contains the recommended list from here: http://help.github.com/ignore-files/ plus *~ to ignore any backup system files.
+
+-------------
+
+* [Git for Designers](http://hoth.entp.com/output/git_for_designers.html)
+* [Github Flow](http://scottchacon.com/2011/08/31/github-flow.html)

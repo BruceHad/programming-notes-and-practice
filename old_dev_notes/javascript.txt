@@ -1,0 +1,286 @@
+# Javascript
+
+22/03/12
+
+https://developer.mozilla.org/en/JavaScript/A_re-introduction_to_JavaScript
+
+Javascript is an object-oriented, dynamic scripting language.
+
+The main Javascript _types_ include: 
+
+* Number
+* String
+* Object
+ ** Function
+ ** Array
+ ** Date
+ ** Reg Ex
+* Null
+* Undefined
+
+## Numbers
+
+There are actually no integers in Javascript, all numbers are floating point doubles.
+
+If you want an integer you can use:
+
+	parseInt("123", 10)
+	>>> 123
+
+	parseInt("101", 2)
+	>>> 5
+
+There are built in Math functions that help with numeric operations. e.g:
+
+	Math.PI
+	Math.sin(3.5)
+
+A special value "NaN" is returned if a string doesn't evaluate to a number. And you can use the isNan() to determine if a string is not a number.
+
+## Strings
+
+Strings are sequences of unicode characters. 
+
+Strings have a length property.
+
+	"hello".length
+	>>> 5
+
+And they have various methods such as concat, match, toUpperCase that can be applied to them.
+
+## Booleans
+
+_true_ and _false_ are special keywords. Various other values evaluate to true or false as well.
+
+* False - false, 0, "", NaN, Undefined, Null
+* True - everything else
+
+You can convert to booleans explicitely but javascript will do it for you in most circumstances, where it is expected, like in an if statement.
+
+## Variables
+
+New variables are decalared using the var keyword.
+
+	var a;
+	var name = "Bruce";
+
+The type is defined by the data. Empty variable remain undefined.
+
+Variables do not have bounded scope unless declared in a function.
+
+## Operators
+
+The usual operators are available: + - * / % += == etc
+
+The plus + operator is also used to concatenate strings. So be careful when working with strings and numbers.
+
+## Control Structures
+
+There are the usual control structures. Here are some examples for reference.
+
+If Statements:
+
+	if() {}
+	else if {}
+	else {}
+
+While Loop:
+
+	while(){}
+
+Do While Loop:
+
+	do {}
+	while ()
+
+For statement:
+	
+	for (var i=0; i <5; i++) {}	
+
+In your conditions you can use and & and or | statements. Doubling these (&&, ||) is a useful shorthand.
+
+The Switch/Case statement:
+	
+	switch(action) {  
+		case 'draw':  
+	        	drawit();  
+	        	break;  
+		case 'eat':  
+		        eatit();  
+		        break;  
+		default:  
+   			donothing();  
+	} 
+
+You generally need to enter a break statement at the end of each case, otherwise the execution will 'fall through' to the next level (in which case why aren't you using and if statement).
+
+## Arrays
+
+Arrays are similar to Objects but have are indexed, rather than named.
+
+	var ar = []
+	var ar = ["Dog","Cat"]
+
+Similar to Strings, arrays have a property called length. 
+	
+	ar.length
+	>>2
+
+Note: The index isn't always ordered in a natural sequence. And length doesn't count the number of items in the array, but returns the last index +1. Don't know why.
+
+## Associative Arrays
+
+Javascript doesn't have dictionaries. But you can use objects instead. e.g. Using literal notation, you can set something up like this.
+
+    dict = {A:"Hello", B:"Goodbye", C: "Gone"};
+    dict.B
+    >>Goodbye
+
+## Functions
+
+Functions can be declared as follows:
+
+	function add(x,y) {
+		var total = x + y;
+		return var;
+	}
+
+The function statement
+
+    function membername(...) {...}
+
+is shorthand for
+
+    var membername = function membername(...) {...};
+
+Strangely the parameters are optional, and can otherwise be accessed from the special _arguments_ object.
+
+Javascript also allows for anonymous functions, which are apparently quite useful.
+
+## Custom Objects
+
+Javascript doesn't define Classes. Instead, you can use functions.
+
+Functions can contain data and other functions which are equivalent to methods. For example:
+
+	function makePerson(first, last) {
+	    return {
+	        first: first,
+	        last: last,
+	        fullName: function() {
+	            return this.first + ' ' + this.last;
+	        },
+	        fullNameReversed: function() {
+	            return this.last + ', ' + this.first;
+	        }
+	    }
+	}
+	> s = makePerson("Simon", "Willison")
+	> s.fullName()
+	Simon Willison
+	> s.fullNameReversed()
+	Willison, Simon
+
+_this_ is a special keyword. When used inside an object it refers to the current object.
+
+## Objects
+
+Objects are core data structures, equivalent to Dictionaries and Associative Arrays. You can create and object and populate it with properties using the literal notation and curly braces {}.
+
+    var obj = {}
+	obj.name = "Bruce"
+
+The name property is added using dot notation. You can also use brackets.
+
+	obj["name"] = "Bruce"
+
+An advantage of the bracket notation is that you can use variable and stuff.
+
+Or you can use this extended syntax, which also allows you to create objects:
+
+	var obj = {
+		name: "Bruce",
+		address:{
+			street:"Stenhouse",
+			city:"Edinburgh"
+		}
+
+	}
+
+The above way of creating objects is known as literal notation. 
+
+Alternatively we can use a construct objects using the new Object() keywords.
+
+    var obj = new Object();
+
+In this case we are using the built in Object(). We can also create new objects from constructors (template objects similar to classes). See below.
+
+Objects can also have Methods (which work the same as functions but are associated with an object). A function/method can be associated with an object in the same way as a property, using dot notation.
+
+    bob.setAge = function (newAge){
+      bob.age = newAge;
+    };
+
+And advantage that methods have over functions is that they can use the object properties for calculations, where functions are limitted to their input parameters.
+
+In Javascript (like Python I think) the 'this' keyword is used to refer to the current object, so can be used within a method.
+
+    print(this.age);
+
+Methods can also be added to objects using the literal notation:
+
+    var james = {
+        job: "programmer",
+        married: false,
+        speak: function(feeling) {
+            console.log("Hello, I am feeling "+feeling);
+        }
+    };
+
+A 'Contructor' object can be created instead of Classes(?) The constructor function defines the objects methods and properties, allowing you to use the 'new' keyword. e.g:
+
+    function Rectangle(length, width) {
+      this.length = length;
+      this.width = width;
+      this.calcArea = function() {
+          return this.length * this.width;
+      };
+      // put our perimeter function here!
+      this.calcPerimeter = function() {
+          return this.length * 4;
+      }
+    }
+
+A constructor is just a normal function, that happens to be called by the new keyword.
+
+
+Properties and methods can be set up in the class contructor, and can be private or public.
+
+    function Person(first,last,age) {
+       this.firstname = first;
+       this.lastname = last;
+       this.age = age;
+       var bankBalance = 7500;
+    }
+
+Variable are private (only available within the scope of where they are created). So in this example, bankBalance is a private property, and can't be accessed from outside the object. The this keyword is used for public properties/methods. 
+
+Private functions can also be set up.
+
+    function Person(first,last,age) {
+       this.firstname = first;
+       this.lastname = last;
+       this.age = age;
+       var bankBalance = 7500;
+      
+       this.getBalance = function() { // Public Method
+          // your code should return the bankBalance
+          return bankBalance;
+       };
+    
+       var returnBalance2 = function() { // Private Method
+          return bankBalance;
+       };
+    }
+
+In this example, returnBalance2 is private.

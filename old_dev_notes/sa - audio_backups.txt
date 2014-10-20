@@ -1,0 +1,21 @@
+Configuration file saved to C Drive.
+
+Ripping:
+
+1. CUE Sheet
+
+A CUE sheet allows to burn a CD with exactly the same track/pause structure as the original CD (more info in Appendix). To create a CUE sheet, click Action | Create CUE sheet | Multiple WAVs with gaps (noncompliant). You will see that EAC detects the gaps, just like on the previous page. Like all other files, the CUE sheet is saved here.
+
+2. Test & Copy
+
+Choose Action | Test & Copy selected tracks | Compressed. Now EAC starts ripping. That will take about 10 to 60 minutes, depending on CD surface state, drive speed and Drive Options.
+
+3. Two Checks
+
+    1. When EAC has finished ripping, it will show a report (log). 'No errors occured' means the rip is perfect, 'There were errors' means some tracks couldn't be ripped properly.
+    
+    2. Look at the CRC checksums here. All tracks should say OK. If you see a # EAC has failed for that track. This additional check is needed because # do not generate a There were errors message!
+
+--------------------
+
+* http://home.scarlet.be/spb2267/index.htm

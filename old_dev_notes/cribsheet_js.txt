@@ -1,0 +1,152 @@
+# Contents
+
+1. Basics
+1. Data Types
+1. Arrays
+1. Control Structures, Loops etc
+1. Classes and Objects
+1. Common Functions/Methods
+
+# Basics
+
+Variables are declared with 'var' and the name. Note variables don't have to be declared.
+
+    var myVariable = 'Variable';
+
+Text can be commented out with double slash 
+
+    // My comment
+
+# Data Types
+
+Javascript is weakly typed.
+
+Primitive Types: String, Boolean, Integer, Floating Point, Null, Void
+Composite Types: Object, Array, Function. 
+
+# Arrays
+
+Arrays can be declared like so:
+
+    var myArray = new Array(size[optional]);
+
+or you can declare and initialise the array at the same time:
+
+    var myArray = ["Monday","Tuesday"];
+
+Elements of the array can be accessed set using bracket notation and the (zero-starting) index.
+
+    var myArray[0] = "Monday";
+    print (myArray[0]);
+    >>Monday
+
+## Common Properties and Methods
+
+These use the dot notation. e.g.
+
+    myArray.length
+    myArray.push("element")
+
+length - Reflects the number of elements in an array.
+pop(element) - Removes the last element from an array and returns that element.
+push(element) - Adds one or more elements to the end of an array and returns the new length of the array.
+reverse() - Reverses the order of the elements of an array.
+shift() - Removes the first element from an array and returns that element.
+sort() - Sorts the elements of an array.
+splice() - Adds and/or removes elements from an array.
+unshift() - Adds one or more elements to the front of an array and returns the new length of the array.
+join() - Joins all elements of an array into a string.
+indexOf() - [Requires JavaScript 1.6] Returns the first (least) index of an element within the array equal to the specified value, or -1 if none is found.
+lastIndexOf() - [Requires JavaScript 1.6] Returns the last (greatest) index of an element within the array equal to the specified value, or -1 if none is found.
+forEach() - [Requires JavaScript 1.6] Calls a function for each element in the array.
+
+[More](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/)
+
+# Control Structures, Loops etc
+
+## If/Else
+
+    if(condition) {
+        // do something
+    }
+    else if(condition) {
+        // do something else
+    }
+    else {
+        // do default
+    }
+
+## Switch Statements
+
+    switch (expression) {
+        case label:
+            do something if label matches;
+            break;
+
+        case label2:
+            do something if label2 matches;
+            break;
+
+        default:
+            do something if no match;
+            break;
+    }
+
+## For Statement
+
+    for (var i=0; i <= 10; i++) {
+        // do something
+    }
+
+## While Loop
+
+    var i = 0;
+
+    while (i <= 10){
+        // Do something
+        i++;        
+    }
+
+## Do While Loop
+
+
+    var i = 0;
+    do {
+        // do something
+        i++;
+    }
+    while (i <= 10);
+
+## For In Arrays
+
+Kinda like PHP foreach...as but returns the index, rather than the value.
+
+    var myArray = [1,2,3];
+    for (number in myArray){
+        print(myArray[number]);
+    }
+
+
+# Functions
+
+# Objects
+
+An object with methods can be created like so.
+
+    var dog = {
+      species: "greyhound",
+      weight: 60,
+      age: 4
+    };
+
+Alternatively you can construct and object.
+
+var dog = new Object();
+
+Properties of the object can be accessed through dot notation.
+
+dog.species = "greyhound";
+
+or bracket notation
+
+dog["weight"] = 60;

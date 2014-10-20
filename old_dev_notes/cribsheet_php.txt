@@ -1,0 +1,37 @@
+# PHP - Cribsheet
+
+## File Handling
+
+fopen() binds a named resource, specified by filename, to a stream. 
+
+    resource fopen ( 
+        string $filename , 
+        string $mode [, bool $use_include_path = false [, resource $context ]] )
+
+
+For example:
+
+    $file = fopen("c:\\folder\\resource.txt", "r");
+
+Mode indicates the reading mode to open the file in. For example "r" opens the file for reading, and places the cursor at start of file.
+
+The optional third use_include_path parameter can be set to '1' or TRUE if you want to search for the file in the include_path (a list of standard directories that PHP will look in to find files), too.
+
+## Strings 
+
+### Quote and Escape Characters
+
+Single quoted strings will display things almost completely "as is." Variables and most escape sequences will not be interpreted. The exception is that to display a literal single quote, you can escape it with a back slash \', and to display a back slash, you can escape it with another backslash \\ (So yes, even single quoted strings are parsed).
+
+Double quote strings will display a host of escaped characters and variables in the strings will be evaluated. An important point here is that you can use curly braces {} to isolate the name of the variable you want evaluated.
+
+Heredoc string syntax works like double quoted strings. It starts with <<<. After this operator, an identifier is provided, then a newline. The string itself follows, and then the same identifier again to close the quotation. You don't need to escape quotes in this syntax.
+
+Nowdoc (since PHP 5.3.0) string syntax works essentially like single quoted strings. The difference is that not even single quotes or backslashes have to be escaped. A nowdoc is identified with the same <<< sequence used for heredocs, but the identifier which follows is enclosed in single quotes, e.g. <<<'EOT'. No parsing is done in nowdoc.
+
+
+
+------------------
+
+* [Difference between single quote and double quote string in php](http://stackoverflow.com/questions/3446216/difference-between-single-quote-and-double-quote-string-in-php)
+

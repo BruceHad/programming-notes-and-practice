@@ -1,0 +1,41 @@
+# Template Tags
+
+* Head 
+ ** {PAGE_TITLE_HEAD}
+ ** {WIKI_TITLE}
+ ** {HEAD}
+
+* Body
+ ** {HOME} 
+ ** {RECENT_CHANGES}
+ ** {EDIT} 
+ ** {SYNTAX}
+ ** {HISTORY}
+ ** {PAGE_TITLE} 
+ ** {plugin:VERSIONS_LIST}
+ ** {ERROR}
+ ** {CONTENT}
+ ** {plugin:TAG_LIST}
+ ** {CONTENT_FORM} 
+  *** {RENAME_TEXT} 
+  *** {RENAME_INPUT}
+  *** {CONTENT_TEXTAREA}
+  *** {FORM_PASSWORD}
+  *** {FORM_PASSWORD_INPUT} 
+  *** {plugin:CAPTCHA_QUESTION}
+  *** {plugin:CAPTCHA_INPUT}
+  *** {EDIT_SUMMARY_TEXT} 
+  *** {EDIT_SUMMARY_INPUT} 
+  *** {CONTENT_SUBMIT}
+  *** {CONTENT_PREVIEW}
+ ** {/CONTENT_FORM}
+ ** {SEARCH_FORM}
+  *** {SEARCH_INPUT}
+  *** {SEARCH_SUBMIT}
+ ** {/SEARCH_FORM}
+ ** {LAST_CHANGED_TEXT}
+ ** {LAST_CHANGED} 
+ ** {COOKIE}
+ ** {EDIT} 
+ ** {SYNTAX}
+ ** {HISTORY}
