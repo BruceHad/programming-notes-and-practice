@@ -53,181 +53,7 @@ Personal computers (PCs), also called microcomputers, are the most popular type 
 
 ###WHAT ARE THE COMPONENTS OF A COMPUTER?
 
-Computers are made up of two parts: the hardware and the software.
-
-Hardware: The physical equipment required to create, use, manipulate and store electronic data.
-
-Software: The computerised instructions that operate a computer, manipulate the data and execute particular functions or tasks.
-
-All computers require the following hardware components:
-
-Central processing unit (CPU): 
-The chip or chips at the heart of a computer that enable it to process data. Also known as a processor.
-
-Memory: 
-An area within a computer system that holds data waiting to be processed.
-
-Storage device: 
-The place where a computer puts data.
-
-Input devices : 
-The devices that allow data and instructions to enter a computer (such as a keyboard, mouse, scanner). 
-
-
-Output devices: 
-The devices that allow information to be represented (that is, given out) to the user, such as a display screen or printer). 
-
-Peripheral device: 
-Any piece of equipment in a computer system that is not actually inside the computer itself.
-
-
-####Central Processing Unit
-
-The central processing unit (CPU) is the heart of the computer. It carries out all of the instructions given in a program. 
-
-The CPU consists of one or more chips (another name for "integrated circuits").
-
-Semi-conductor: Material with a conductivity somewhere between a resistor and a conductor.
-
-Silicon: (When doped) silicon is a semi-conductive material, that is commonly used in microchips. Silicon has four electrons in its outer orbital, allowing it to form a perfect covalant bond, leaving no free electrons to conduct current (making it an insulator). Doping allows silicon to conduct current.
-
-Doping: Mixing a small impurity into the silicon crystal. (N-type or negative) Phosphorous or Arsenic doping introduces a fifth electron, that is free to move, and carry current. (p-type or positive) Boron or Gallium doping only have three outer electrons, creating holes  where the silicon electron has nothing to bond to.
-
-Diode:
-A diode it a combination of p and n-type semi-conductors layered together. A diode allows current to flow in only one direction.
-
-Transistor:
-A transistor is a sandwich of p and n-type semi-conductors. By applying a small current to the middle layer, a much larger current can flow through, so transistors can act as switched.
-
-Chip: 
-A small piece of semi-conducting material (such as silicon) about 1 centimetre (¼ inch) square on which an integrated circuit is embedded. The silicon can hold transistors which act as switches, and used to create boolean gates.
-
-Boolean Gate:
- 
-Integrated Circuit:
-A number of electronic components joined together to form a path for electricity.
-
-Central Processing Unit chips contain the circuits representing the CPU.
-
-A microprocessor is a particular type of chip. The original IBM personal computer used the Intel 8088 microprocessor. Most of today's microcomputers are designed around a microprocessor from one of two product families: x86 or Power. 
-
-The 80286, 80386, and 80486 models that followed were referred to by the last three digits, 286, 386, and 486. For the next generation, however, Intel broke with tradition and introduced the Pentium.
-
-CPU's are not all equal. Some process data faster than others. 
-
-A computer contains a system clock that emits pulses to establish the timing of all systems operations. 
-The system clock operates at a speed quite different from a clock that keeps track of the time of the day. The system clock determines the speed at which the computer can execute an instruction, and therefore limits the number of instructions the computer can complete within a specific amount of time. 
-
-The time to complete an instruction execution cycle is measured in megahertz (MHz) or millions of cycles per second. Although some instructions require multiple cycles to complete, the processor speed should be thought of in terms of the number of instructions the processor can execute in one second. 
-
-Today, microprocessor speeds exceed 5GHz. If all other specifications are identical, then higher megahertz ratings means faster processing.
-
-####Memory
-
-
-Random access memory (RAM) is an area in the computer system unit that temporarily holds a user's data, operating system instructions and program instructions.
-
-RAM is distinguished from external mass storage devices such as the hard drive or disk drives. 
-
-Storage is the area within a computer system where data can be left on a longer term basis while it is not needed for processing.
-
-Hard drive: 
-The storage area within the computer itself, where megabytes of space are available to store bits of information. Also known as a hard disk.
-
-CD-ROM:
-
-SD Card:
-
-The Cloud:
-
-
-
-###HOW DOES THE SOFTWARE WORK?
-
-Software is the computerised instructions that operate the computer, execute particular functions or tasks, and manipulate the data. For software (the instructions) to perform various functions, it must be programmed. That is, the instructions need to be written in a programming language that the computer can understand.
-
-Programming language: 
-An artificial set of rules, vocabulary and syntax used to instruct the computer to execute certain tasks.
-
-Computer program: 
-A sequence of instructions that can be executed by a computer to carry out a process.
-
-####Programming Languages
-
-Over the years, a wide range of programming languages have been developed, including BASIC, FORTRAN, PASCAL, C++, JAVA, and so on. 
-Each language has a unique set of words (codes) that it understands and a special syntax for organising program instructions.
-
-The language the computer actually understands is called machine language or machine code, which comprises numbers only which the computer translates into executable instructions. 
-
-Lying between programming languages and machine languages are assembly languages. Assembly languages have the same structure and set of commands as machine languages but they enable a program to use names instead of numbers.
-
-
-####Software
-
-There are two kinds of software, systems software and applications software. 
-
-Systems software includes the Operating System (OS) and all the utilities that enable the computer to function. This includes controlling functions such as the coordination of the hardware and applications software, allocating storage facilities, controlling the input and output devices and managing time sharing for linked or networked computers. 
-
-Examples of operating systems are Windows, OS X and GNU/Linux. 
-
-Applications software includes programs that users access to carry out work. They include Word Processing,Spreadsheets, Database Management Applications and WWW Browsers.
-
-Software programs are continually being written or upgraded to undertake certain tasks. As a result the software can become obsolete quickly.
-
-Software can be either 'proprietary' (also called 'closed') or 'open'. Proprietary software is privately owned and controlled. A proprietary software design or technique is one that is owned by a company, which will usually not divulge specifications that would allow other companies to duplicate the product. 
-
-The advantage of open software is that anyone can create add-on products for it because they can understand how it was designed. People using open software can mix and match products from different manufacturers.
-
-
-
-###HOW DOES A COMPUTER PROCESS INFORMATION
-
-When data is input into a computer, the numbers or words we understand are translated into a binary numbers system. Binary is the language of computers. Everything you type, input, output, send, retrieve, draw and so on is, in the end, converted to the computer's native language: binary.
-
-Binary number system: 
-A numerical system wherein each digit stands for a power of two. The binary system uses only two symbols, 0 and 1, to represent values.
-
-In the decimal system, commonly used in most countries, each digit represents a value of 10. For example, the number 103 would break down as follows:
-
-1 x 100 = 100 0 x 10 = 0 3 x 1 = 3
-
-103 = 103
-
-In the binary system, each digit position represents a value of 2. Because computers use the binary system, powers of 2 play an important role. This is why everything in computers seems to come in 8s (2 to the 3rd power), 64s (2 to the 6th power), 128s (2 to the 7th power), and 256s (2 to the 8th power). 
-
-Therefore, in the binary system, the number 103 would break down as follows:
-
-1 x 64 = 64 1 x 32 = 32 0 x 16 = 0 0 x 8 = 0 1 x 4 = 4 1 x 2 = 2 1 x 1 = 1
-
-1100111 = 103
-
-The values in a binary system -- the 0s and 1s -- are called 'binary digits' or bits.
-
-Binary digit (bit): A digit within the binary number system. A bit is the smallest unit of information held in a computer.
-
-The computer's electronic circuits have only two states, on or off, and therefore can only understand 0s and 1s, which may represent such opposites as on or off, yes or no, or up or down. This is why all computers use the binary system. In order to make the bits useful, they are combined into 'bytes' of information.
-
-Byte: A combination of bits that represent one character. A byte is usually composed of 8 bits.
-
-Computer programmers have developed codes for various bytes of information, so that they may be read by different computer programs. For example, one code might define the letter A as '11000001' and the letter B as 11000010'. The number 6 might be defined as '11110110' and the number 8 as '11111000'. When the person entering data strikes the A key on the keyboard, the computer registers it as '11000001'. When he or she enters the B, the computer reads it as '11000010'. Similarly, the number 6 is understood by the computer as '11110110' and the number 8 as '1111100'. In this way, the computer can store words and numbers as binary digits and then retrieve them and convert them back into words or numbers as required.
-
-As discussed earlier, this work of manipulating, storing and processing the data takes place in the Central Processing Unit, the computer's main memory. The CPU consists of an arithmetic and logic unit, or ALU, a control unit, and a set of registers.
-
- * The arithmetic and logic unit is the portion of the CPU where arithmetic and logical operations take place.
- * The control unit is the part of the CPU that supervises the general operations of the computer.
- * The registers are devices that hold data inside the computer's memory long enough to execute a particular function, such as indexing, calculating, sorting or otherwise manipulating data. They are the CPU's own internal memory. Data travels from one part of the computer to another through a kind of path known as a bus.
-
-Bus: The channel or path that lets the parts of a computer communicate with each other.
-
-Similar to a school bus for school children, a computer data bus picks up a load of data from one of the components on the main computer board and then transfers the data to another component on the main computer board. The main circuit board of a microcomputer is also known as the motherboard. The motherboard is the principal board that has connectors for attaching devices to the bus. Typically, it contains the CPU, memory and basic controllers for the system. The data bus is really a series of electrical circuits that connect the various electrical elements on the main board.
-
-The data are input into the computer and processed in the CPU. They travel along the bus to be stored in the computer's memory. The amount of memory available is described in bytes of information, referring to the combination of bits representing characters. The higher the number of bytes the more memory the computer has. Today's computers hold 'megabytes' or even 'gigabytes' of data. A megabyte is a unit of one million bytes; a gigabyte is one billion bytes, and a terabyte is one trillion bytes. If a computer has a memory of 64 megabytes, then it can hold 64 million bytes of information.
-
-Data can be stored so that it is readable again only using the software with which it was created, or it can be stored in other formats, so that it may be transferred or used by other software programs. There is a standard character code used to store data so that it may be used by other software programs; this code is called ASCII or American Standard Code for Information Interchange. The ASCII code assigns a specific pattern of bits to each character, as described above. Another code that may be found, especially in IBM-brand mainframe computers, is EBCDIC, or Extended Binary Coded Decimal Interchange Code. The important point to remember about these codes is that their main value is to store information so that it is readable by other computers. By using ASCII or EBCDIC, it is possible for people to retrieve and use someone else's data using a different type of hardware or software. The main disadvantage of using ASCII or EBCDIC is that the formatting or other special qualities of computerised information may be lost.
-
-WHAT IS COMPUTER MEMORY?
-
-As defined earlier, memory refers to the temporary internal storage areas within a computer. The term memory is usually used as shorthand for 'physical memory', which refers to the actual chips capable of holding data. Some computers also use 'virtual memory', which expands physical memory onto a hard drive.
+-nd for 'physical memory', which refers to the actual chips capable of holding data. Some computers also use 'virtual memory', which expands physical memory onto a hard drive.
 
 The main type of memory and the most familiar to users is random access memory (RAM). RAM is the same as main memory. A computer can both write data into RAM and read data from RAM.
 
@@ -255,11 +81,11 @@ Hard drive or hard disk storage provides faster access to files than a diskette.
 
 Hard drive: The storage area within the computer itself, where megabytes of space are available to store bits of information. Also known as a hard disk.
 
-A hard disk platter is a flat, rigid disk made of aluminium or glass and coated with a magnetic oxide. A hard disk consists of one or more platters and their read-write heads. A read-write head is the device that reads the data from the disk platter into the computer. It also records (or 'writes') data onto the platters. Hard disk platters in microcomputers are typically 3½ inches (about 10 centimetres) in diameter: the same size as the circular mylar disk in a diskette. However, the storage capacity of a hard disk far exceeds that of a floppy disk. Also, the access time of a hard disk is significantly faster than a diskette. Unlike diskettes, which begin to rotate when one requests data, hard disks are continually in motion, so there is no delay as the disk spins up to speed. Like diskettes, hard disks provide random access to files by positioning the read-write head over the sector that contains the requested data.
+A hard disk platter is a flat, rigid disk made of aluminium or glass and coated with a magnetic oxide. A hard disk consists of one or more platters and their read-write heads. A read-write head is the device that reads the data from the disk platter into the computer. It also records (or 'writes') data onto the platters. Hard disk platters in microcomputers are typically 3ï¿½ inches (about 10 centimetres) in diameter: the same size as the circular mylar disk in a diskette. However, the storage capacity of a hard disk far exceeds that of a floppy disk. Also, the access time of a hard disk is significantly faster than a diskette. Unlike diskettes, which begin to rotate when one requests data, hard disks are continually in motion, so there is no delay as the disk spins up to speed. Like diskettes, hard disks provide random access to files by positioning the read-write head over the sector that contains the requested data.
 
 Diskette. A small, removable, flexible mylar plastic disk covered with a thin layer of a magnetisable substance, onto which digital data can be recorded and stored. Also known as a floppy disk.
 
-Diskettes get another name -- floppy disk -- from the thin mylar disk. If one cuts open the disk casing (not recommended because the disk will be ruined) one would see that the mylar disk inside is thin and "floppy". Diskettes are also called floppies. Although today's microcomputers typically use 3½ inch (about 10 centimetre) disks, you may still find 5¼ inch (about 15 centimetre) disks that were popular many years ago. Finding a disk drive to read 5¼ inch disks may be very difficult.
+Diskettes get another name -- floppy disk -- from the thin mylar disk. If one cuts open the disk casing (not recommended because the disk will be ruined) one would see that the mylar disk inside is thin and "floppy". Diskettes are also called floppies. Although today's microcomputers typically use 3ï¿½ inch (about 10 centimetre) disks, you may still find 5ï¿½ inch (about 15 centimetre) disks that were popular many years ago. Finding a disk drive to read 5ï¿½ inch disks may be very difficult.
 
 Diskettes are generally used for transporting or shipping data files or for making duplicate copies of data files for back-up purposes. The storage capacity of a diskette varies but is considerably smaller than that of a hard drive.
 
@@ -281,7 +107,7 @@ Backing up electronic data is critical to protecting it from loss or damage.
 
 For more information on backing up data and protecting information, see Automating Records Services and Emergency Planning for Records and Archives Services.
 
-The most popular types of tape drives for microcomputers also use tape cartridges, but there are several tape specifications and cartridge sizes. A tape cartridge is a removable magnetic tape module similar to a sound or video cassette tape. Quarter inch tape, called QIC, is a tape cartridge that contains ¼ inch (approximately ½ centimetre) wide tape. Depending on tape length, QIC tape capacities range from 340 MB to 2 gigabytes. Digital audio tape, called DAT, was originally an audio recording format, but is now also used for data storage. The 4mm wide DAT tape format storage capacity ranges from 2 gigabytes to 12 gigabytes.
+The most popular types of tape drives for microcomputers also use tape cartridges, but there are several tape specifications and cartridge sizes. A tape cartridge is a removable magnetic tape module similar to a sound or video cassette tape. Quarter inch tape, called QIC, is a tape cartridge that contains ï¿½ inch (approximately ï¿½ centimetre) wide tape. Depending on tape length, QIC tape capacities range from 340 MB to 2 gigabytes. Digital audio tape, called DAT, was originally an audio recording format, but is now also used for data storage. The 4mm wide DAT tape format storage capacity ranges from 2 gigabytes to 12 gigabytes.
 
 In addition to magnetic storage, there is also optical storage.
 
@@ -988,7 +814,7 @@ Derfler, Frank and Les Freed. How Networks Work. How It Works Series. Emeryville
 
 Gralla, Preston and Mina Reimer. How Intranets Work. How It Works Series. Emeryville, CA: QUE Corp, 1996.
 
-* IDG Books. …for Dummies. Computer Book Series. Chicago, IL: IDG Books, various years. This series of introductory books, called Word for Dummies, Windows 95 for Dummies, PCs for Dummies and The Internet for Dummies, explain computers in clear language, with practical examples and valuable illustrations. More information is available at http://www.dummies.com.
+* IDG Books. ï¿½for Dummies. Computer Book Series. Chicago, IL: IDG Books, various years. This series of introductory books, called Word for Dummies, Windows 95 for Dummies, PCs for Dummies and The Internet for Dummies, explain computers in clear language, with practical examples and valuable illustrations. More information is available at http://www.dummies.com.
 
 * Parsons, June Jamrich and Dan Oja. Computer Concepts. Cambridge, MA: Course Technology, 1999. White, Ron. How Computers Work. How It Works Series. Emeryville, CA: QUE Corp, 1998.
 
