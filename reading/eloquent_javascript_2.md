@@ -1,3 +1,6 @@
+# Eloquent Javascript
+http://eloquentjavascript.net/index.html
+
 ## Values and Operators
 
 6 basic types: Numbers, Strings, Booleans, Objects, Functions and Undefined.
@@ -120,7 +123,7 @@ slice(first,last) will return the elements of an array between first and last (i
 
 firstarray.concat(anotherarray) tacks one array onto another.
 	
-## Objects
+### Objects
 	
 Objects are arbitrary collections of properties (including methods). Objects can be created with curly bracket containing a comma separated list of name:value pairs.
 
@@ -147,7 +150,7 @@ in can be used to iterate over objects.
 	  console.log("o." + prop + " = " + obj[prop]);
 	}
 
-## On Mutability
+### On Mutability
 
 Numbers, strings and Booleans are all immutable (you can't change them, though you can replace them and derive new values from them, which is similar). e.g 'cat' can't have the first letter changed to 'r', without creating a new string.
 
@@ -155,17 +158,18 @@ Objects are mutable. The properties they grasp can change and you can add new me
 
 Immutable types like String can't be modified, so you can't add properties or methods to a String. I guess that's where prototypes come in.
 
-## Arguments Object
+### Arguments Object
 
 In JS you are allowed to pass more or fewer arguments to a function than the number of parameters declared in the function sig. When the function is called a special variable named arguments is added to the scope of the function, that holds all the arguments passed to the function. 
 
 The arguments object has a length property. Each argument can be accessed similar to accessing contents of an array: arguments[0] gives the first argument, but it doesn't have other array methods.
 
-## The Global Objects
+### The Global Object
 
 The global scope can also be approached as an object in JS. In browsers the global scope is stored in the window variable.
 
-## Summary of Objects and Arrays
+### Summary of Objects and Arrays
+
 Objects provide ways to group values into a single grab bag of values. Most values in js have properites (the exception being null and undefined). Those values are accessed using dot notation or sometimes bracket (like arrays).
 
 Methods are basically properties that happen to be functions. Methods of values usually operate on that value. e.g. string.toUpperCase().
@@ -174,3 +178,198 @@ Objects can also serve as maps (associative arrays). The in operator can be used
 
 for (var name in object) loops over properties of an object.
 
+## Higher Order Functions
+### On Abstraction
+
+Functions like sum() and range() can be used to express simple concepts that can be used in more complex programs. e.g. compare:
+
+	var total = 0, count = 1;
+	while (count <= 10) {
+	  total += count;
+	  count += 1;
+	}
+	console.log(total);
+	
+With:
+
+	console.log(sum(range(1, 10)));
+	
+By wrapping the details up in these functions, the program becomes simpler to think about, smaller and probably less likely to contain bugs. This is known as _information hiding_, or _abstration_.
+
+### Functions within Functions
+
+In JS, plain functions can be used to build abstractions but sometimes they fall short. For example when we want the function to loop over an array and 'do something' where that something isn't known beforehand.
+
+In this case we can pass the do something as a function, into the looping function.
+
+	function forEach(array, action) {
+	  for (var i = 0; i < array.length; i++)
+		action(array[i]);
+	}
+	
+We can now pass a function to the 'action' argument and have forEach carry out that action on each element of the array.
+
+	var numbers = [1, 2, 3, 4, 5], sum = 0;
+	forEach(numbers, function(number) {
+	  sum += number;
+	});
+	
+Note we are passing an anonymous function here. (Sometime known as a lambda??).
+
+Note 2 this forEach function is unneccessary as it is already provided as a method on arrays.
+
+Functions that operate on other function (by taking them as arguments or by returning them) are called higher order functions. They allow us to 'abstract over actions, not just values'.
+
+Functions that create other functions:
+
+	function greaterThan(n) {
+	  return function(m) { return m > n; };
+	}
+	var greaterThan10 = greaterThan(10);
+	console.log(greaterThan10(11));
+	// → true
+
+Functions that change other functions:
+
+	function noisy(f) {
+	  return function(arg) {
+		console.log("calling with", arg);
+		var val = f(arg);
+		console.log("called with", arg, "- got", val);
+		return val;
+	  };
+	}
+	noisy(Boolean)(0);
+	// → calling with 0
+	// → called with 0 - got false
+	
+Functions for controlling flow:
+
+	function unless(test, then) {
+	  if (!test) then();
+	}
+	function repeat(times, body) {
+	  for (var i = 0; i < times; i++) body(i);
+	}
+
+	repeat(3, function(n) {
+	  unless(n % 2, function() {
+		console.log(n, "is even");
+	  });
+	});
+	// → 0 is even
+	// → 2 is even
+	
+### Filter
+	
+Higher order functions that apply a function to each element of an array are common. forEach is one primitive example. filter is another:
+
+	function filter(array, test){
+		var passed = [];
+		for(var i=0; i<array.length; i++){
+			if(test(array[i])) passed.push(array[i])
+		}
+	}
+	
+	filter(ancestry_file, function(person){
+		return person.age > 1900;
+	});
+	
+Like forEach, filter is a built in method of array, so is just shown here for example. In real world you would use it like so:
+
+	ancestry_file.filter(function(person){
+		return person.born > 1900;
+	});
+	
+Filter is a pure function and doesn't have any side effects on the original array.
+
+### Map
+
+Map transforms an array by applying a function to all the elements of the array. The resulting new array will be the same length as the original, but the contents will have changed.
+
+	function map(array, transform){
+		var mapped = [];
+		for(var i=0; i<array.length; i++)
+			mapped.push(transform(array[i]));
+		return mapped;
+	}
+	var mappep = map(myArray, function(person){
+		return person.name;
+	});
+	// returns an array of just names
+
+Again, map is a standard function of array, so we don't have to write it out. 
+
+## Reduce
+
+The reduce method that aggregates the contents of an array into a single value. e.g. summing an array of numbers, or returning the highest/lowest value.
+
+	function reduce(array, combine, start){
+		var current = start;
+		for(var i=0; i<array.length; i++)
+			current = combine(current, array[i])
+		return current;
+	}
+	
+	var summed = reduce([1,2,3], function(a, b){
+		return a+b;
+	}, 0);
+	
+Again, reduce is the standard method of array. The standard method is a bit different in that the start value is optional. If left out, reduce will start with the first element of the array and combine with the second.
+
+	var summed = [1,2,3].reduce(function(a,b){ 
+		return a+b; 
+	});
+
+### Composability
+
+Higher order functions start to shine when we start combining (composing) with them. 
+
+	function average(array){
+		function plus(a, b){return a+b}
+		return array.reduce(plus)/array.length;
+	}
+
+Note the looping that would normally be required isn't visible (hidden within the reduce function) leaving readable code that closely matches the logic of finding an average.
+
+### On Performance
+
+These functions and attempts to make the code elegant and readable can have a downside for performance.
+
+ * Tends to create new, intermediate processed arrays which can be costly.
+ * Function calls are expensive compared to simple loops.
+ 
+This trade off is often not relevant, as computers are fast enough to make the difference negligible. But there will be instances where performance is important. It is therefore a good idea of keeping a not of the number of operations a block of code will carry out, especially when you have loops embedded in loops. And this can be difficult to spot when the loops are hidden behind functions.
+
+### apply and bind
+
+apply and bind are standard methods on all functions.
+
+The apply() method calls a function with a given this value and arguments provided as an array (or an array-like object).
+
+	fun.apply(thisArg[, argsArray])
+	
+For example:
+
+	var numbers = [5, 6, 2, 3, 7];
+	var max = Math.max.apply(null, numbers);
+	>> 7
+	
+The bind() method creates a new function that when called has it's _this_ keyword set to the first argument, and the following arguments prepended to those provided when the bound function is called. 
+
+	fun.bind(thisArg[, arg1[, arg2..]]);
+	
+No real idea why this is important. According to book it 'is used to create a partially applied version of the function'.
+	
+### JSON
+
+JSON (jason) stands for Javascript Object Notation is a data format that looks similar to how arrays and objects are created in Javascript. There are a couple of restrictions. The property names are surrounded by quotes (like strings). Only simple data expressions are allowed, no functions, variables or anything that requires computation [so presumably you can have strings, numbers and bools only]. And no comments.
+
+Looks something like this:
+
+	[{"name": "Bruce", "age":100},{...}]
+	
+## Objects
+	
+
+	
