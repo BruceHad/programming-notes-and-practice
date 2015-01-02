@@ -354,6 +354,8 @@ For example:
 	var numbers = [5, 6, 2, 3, 7];
 	var max = Math.max.apply(null, numbers);
 	>> 7
+	var max = Math.max(1,2,4,3)
+	>> 4
 	
 The bind() method creates a new function that when called has it's _this_ keyword set to the first argument, and the following arguments prepended to those provided when the bound function is called. 
 
@@ -369,7 +371,174 @@ Looks something like this:
 
 	[{"name": "Bruce", "age":100},{...}]
 	
-## Objects
-	
+# Objects Again
 
+Objects have a strange reputation. But they are useful for encapsulation. A basic object in JS is a bag of named properties, similar to an associative array.
+
+	var myObj = {};
 	
+Object methods are just properties that hold functions. Properties can be added to an object in curly brackets or using dot notation.
+
+	var rabbit = {};
+	rabbit.speak = function(line) {
+		console.log("The rabbit says '" + line + "'");
+	};
+
+	var myObj = {
+		speak: function(line){
+			console.log("This object says: "+ line);
+		}
+	}
+	rabbit.speak("I'm alive.");
+	// The rabbit says 'I'm alive.'
+	myObj.speak("I'm an object");
+	// This object says: I'm an object
+
+When a function is called as a method, the special variable _this_ will point to the object that it was called on.
+
+	function speak(line) {
+		console.log("The " + this.type + " rabbit says '" + line + "'");
+	}
+	var whiteRabbit = {type: "white", speak: speak};
+	var fatRabbit = {type: "fat", speak: speak};
+
+	whiteRabbit.speak("I'm a white rabbit.");
+	fatRabbit.speak("God I'm fat.");
+	>> The white rabbit says 'I'm a white rabbit.'
+	>> The fat rabbit says 'God I'm fat.'
+
+So when _this.type_ is called in speak, this refers to the object in which the speak method is called.
+
+The apply() and bind() methods simulate method calls, the first argument of which is the _this_ to be used. There is another similar method called call() which works like apply, except doesn't require an array.
+
+	speak.apply(fatRabbit, ["Burp!"]);
+	speak.call({type: "old"}, "Oh my.");
+	>> The fat rabbit says 'Burp!'
+	>> The old rabbit says 'Oh my.'
+
+## Prototypes
+
+
+Almost all objects have a prototype. A prototype is another object that provides a fallback, base of properties.
+
+Object.prototype is the root prototype that most objects have as a prototype. It provides a few shared methods that are therefore available to all objects (e.g. toString()). The Object.prototype itself doesn't have a prototype (the turtles stop here).
+
+	console.log(Object.prototype);
+	console.log(Object.getPrototypeOf({}));
+	console.log(Object.getPrototypeOf({}) == Object.prototype);
+	console.log(Object.getPrototypeOf(Object.prototype));
+	>{}
+	>{}
+	>true
+	>null
+
+The Object.getPrototypeOf(obj) method returns the prototype of the specified obj.
+
+Some objects have higher level prototypes, e.g. functions derive from the Function.prototype and arrays from the Array.prototype.
+
+	console.log(Object.getPrototypeOf(isNaN) == Function.prototype);
+	console.log(Object.getPrototypeOf([]) == Array.prototype);
+	console.log(Array.prototype);
+	console.log(Function.prototype);
+	>true
+	>true
+	>[]
+	>function (){…}
+
+When looking for an object property, JS will search the object, will search the object, then search it's prototype, then search the prototypes prototype, all the way down to the root. This provides inheritance. And means inherited properties can be overwritten.
+
+You can use Object.create to create an object based on a specific prototype object.
+
+	var protoRabbit = {
+		speak: function(line) {
+			console.log("The " + this.type + " rabbit says '" + line + "'");
+		}
+	};
+	var killerRabbit = Object.create(protoRabbit);
+	killerRabbit.type = "nice";
+	killerRabbit.speak("Hello");
+	console.log(Object.getPrototypeOf(killerRabbit))
+	
+	>The nice rabbit says 'Hello'
+	>{speak: function (line){…}}
+	
+My rabbit will have access to the 'speak' method via it's prototype.
+
+But it's more convenient to use a Constructor to create a new object from a function. The _new_ keyword will treat a function as a Constructor. And object created with the new keyword is said to be an instance of the Constructor.
+
+	function Rabbit(type) {
+		this.type = type;
+	}
+	var blackRabbit = new Rabbit("black");
+	console.log(blackRabbit.type);
+	console.log(Rabbit.prototype);
+	console.log(Object.getPrototypeOf(Rabbit));
+	console.log(Object.getPrototypeOf(blackRabbit));
+	>black
+	>Rabbit{}
+	>function (){…}
+	>Rabbit{}
+	
+All Functions, including Constructors, automatically get an object called prototype. When a new object is created using a Constructor, the new objects takes on this object as its prototype. Therefore if we need to add functionality to the object later, we can amend the prototype.
+
+	Rabbit.prototype.speak = function(line) {
+		console.log("The " + this.type + " rabbit says '" + line + "'");
+	};
+	blackRabbit.speak("Doom...");
+	// → The black rabbit says 'Doom...'
+	
+speak() could have been added to the Constructor, not sure why you'd need to amend the prototype to do that. I guess it depends on when the functionality needs added.
+
+Properties from the prototype can be overridden by properties of the object instance with the same name. The prototype properties are not affected.
+
+Adding properties to the prototype allows us to add properties to all objects with that prototype at any time. But this can cause problems.
+
+	var map = {
+		a: 1,
+		b: 2
+	};
+	Object.prototype.nonsense = "hi";
+	console.log(map);
+	>{a: 1, b: 2}
+	for(var name in map) console.log(name);
+	>a
+	>b
+	>nonsense
+	console.log('nonsense' in map);
+	true
+
+'Nonsense' isn't a property of map, but of it's protype, but it is listed when using the _in_ operator, which may not be the expected behaviour.
+
+To prevent properties showing up in for/in loops, the property has to be set as non-enumerable, which can be done with the defineProperty Object method.
+
+	Object.defineProperty(object, property_name, descriptor)
+
+The descriptor is an object {} with the settings for the property, such as get, set, value and _enumerable_.
+
+	var map = {
+		a: 1,
+		b: 2
+	};
+	Object.defineProperty(
+		Object.prototype, 
+		"nonsense", 
+		{enumerable: false, value: "hi"});
+	console.log(map);
+	for(var name in map) console.log(name);
+	console.log('nonsense' in map);
+
+	>{a: 1, b: 2}
+	>a
+	>b
+	>true
+
+Note that _in_ still resolves to true, but it's not listed in the for/in loop because it isn't enumerable. To fix that we can use hasOwnProperty in place of in.
+
+	console.log(map.hasOwnProperty("toString"));
+	// → false
+
+Polymorphism refers to the provision of a single interface to entities of different types. For example obj.toString() can be called where obj could be an integer, an array or an Object. In each case toString will do something different, but the interface remains the same.
+
+
+
+
