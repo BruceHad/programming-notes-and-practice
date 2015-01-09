@@ -1,6 +1,32 @@
 # Eloquent Javascript
 http://eloquentjavascript.net/index.html
 
+## Plan
+
+1. Values, Types, and Operators
+1. Program Structure
+1. Functions
+1. Data Structures: Objects and Arrays
+1. Higher-order Functions
+1. The Secret Life of Objects
+1. Project: Electronic Life (Partially Complete)
+1. Bugs and Error Handling (06/01/2015 - )
+1. Regular Expressions
+1. Modules
+1. Project: A Programming Language
+1. (Part 2: Browser)
+1. JavaScript and the Browser
+1. The Document Object Model
+1. Handling Events
+1. Project: A Platform Game
+1. Drawing on Canvas
+1. HTTP
+1. Forms and Form Fields
+1. Project: A Paint Program
+1. (Part 3: Node)
+1. Node.js
+1. Project: Skill-Sharing Website 
+
 ## Values and Operators
 
 6 basic types: Numbers, Strings, Booleans, Objects, Functions and Undefined.
@@ -539,6 +565,142 @@ Note that _in_ still resolves to true, but it's not listed in the for/in loop be
 
 Polymorphism refers to the provision of a single interface to entities of different types. For example obj.toString() can be called where obj could be an integer, an array or an Object. In each case toString will do something different, but the interface remains the same.
 
+# Testing, Debugging and Error Handling
 
+## Use Strict
 
+Placing the string "use strict"; at the top of the file, or within a function tightens up some of the syntax.
 
+* It will complain if creating a variable without using var.
+* The _this_ keyword will be undefined unless used in a function that is called as a method (e.g. where the new constructor is used. Normally this defaults to the global scope.
+* Disallows giving functions multiple parameters with the same name.
+
+## Testing
+
+You can write custom code that will test your functions for you.
+
+	function Vector(x, y) {
+		this.x = x;
+		this.y = y;
+	}
+	Vector.prototype.plus = function(other) {
+		return new Vector(this.x + other.x, this.y + other.y);
+	};
+
+	function testVector() {
+		var p1 = new Vector(10, 20);
+		var p2 = new Vector(-10, 5);
+		var p3 = p1.plus(p2);
+
+		if (p1.x !== 10) return "fail: x property";
+		if (p1.y !== 20) return "fail: y property";
+		if (p2.x !== -10) return "fail: negative x property";
+		if (p3.x !== 0) return "fail: x from plus";
+		if (p3.y !== 25) return "fail: y from plus";
+		return "everything ok";
+	}
+	console.log(testVector());
+	// → everything ok
+
+This is repetitive though, so might be better to use a test framework built for the task.
+
+## Debugging
+
+## Exception Handling
+
+When a function cannot proceed normally, what we would like to do is just stop what we are doing and immediately jump back to a place that knows how to handle the problem. This is what exception handling does.
+
+The concept is that when a program runs into a problem it raises and exception (which is simply a value) and jumps out of the current function and it's callers, all the way back to the first call that started the current execution. 
+
+i.e. Picture a stack of function calls. An exception would unwinds that stack, throwing away all the contexts, until it gets to the bottom of the stack. Unless that exception is handled. Exception handling 'catches' the exeption and 'does something'.
+
+	function promptDirection(question) {
+		var result = prompt(question, "");
+		if (result.toLowerCase() == "left") return "L";
+		if (result.toLowerCase() == "right") return "R";
+		throw new Error("Invalid direction: " + result);
+	}
+
+	function look() {
+		if (promptDirection("Which way?") == "L")
+			return "a house";
+		else
+			return "two angry bears";
+	}
+
+	try {
+		console.log("You see", look());
+	} catch (error) {
+		console.log("Something went wrong: " + error);
+	}
+
+The throw keyword raises the exception. The try block runs the code. If an exception is raised during the processing of the try block, the catch block is executed.
+
+An additional feature is the try block. The code in try will be executed regardless of the results of the try block. Even if you return in the try block, finally will still be executed.
+
+Errors that aren't caught are known as unhandled exceptions. These are handled by the environment/browser, often reporting an error in the console. 
+
+The catch body will catch all errors, so it could be the error that it was designed to handle, or it could be some other error that you never thought about.
+
+JS doesn't directly provide a way of selectively handling errors, so we have to work around that ourselves.
+
+	function InputError(message) {
+		this.message = message;
+		this.stack = (new Error()).stack;
+	}
+	InputError.prototype = Object.create(Error.prototype);
+	InputError.prototype.name = "InputError";
+	console.log(myError.name);
+	console.log(myError.message);
+	console.log(myError instanceof Error);
+	console.log(myError instanceof InputError);
+	>InputError
+	>My new error
+	>true
+	>true
+
+This creates a new type of error derived from the Error prototype. 
+
+The assignment to the stack property tries to give this object a somewhat useful stack trace, on platforms that support it, by creating a regular error object and then using that object’s stack property as its own.
+
+Now we can use the error in our application and use instanceof to determine if it's an input error and handle it accordingly. If it isn't, the error can be re-thrown.
+
+	function promptDirection(question) {
+		var result = prompt(question, "");
+		if (result.toLowerCase() == "left") return "L";
+		if (result.toLowerCase() == "right") return "R";
+		throw new InputError("Invalid direction: " + result);
+	}
+	for (;;) {
+		try {
+			var dir = promptDirection("Where?");
+			console.log("You chose ", dir);
+			break;
+		} catch (e) {
+			if (e instanceof InputError)
+				console.log("Not a valid direction. Try again.");
+			else
+				throw e;
+		}
+	}
+
+## Assertions
+
+We can also create assetions that will help enforce certain requirements.
+
+	function AssertionFailed(message) {
+		this.message = message;
+	}
+	AssertionFailed.prototype = Object.create(Error.prototype);
+
+	function assert(test, message) {
+		if (!test)
+			throw new AssertionFailed(message);
+	}
+
+	function lastElement(array) {
+		assert(array.length > 0, "empty array in lastElement");
+		return array[array.length - 1];
+	}
+	
+So we have created a new type of error for AssertionFailed type errors. Then we have a helper function that can be used to assert any test we pass it, and throw and AssertionFailed error if it fails.
